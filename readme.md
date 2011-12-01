@@ -18,7 +18,7 @@ proj: bin/run
 
 $ cd proj
 
-$ heroku create -s cedar --buildpack http://github.com/ryandotsmith/null-buildpack
+$ heroku create -s cedar --buildpack http://github.com/ryandotsmith/null-buildpack.git
 
 ...
 
