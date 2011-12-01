@@ -1,6 +1,6 @@
 # Heroku Buildpack: Ø
 
-This buildpack does nothing. Use Ø if you need heroku to execute a binary.
+Use Ø if you need heroku to execute a binary.
 
 ## Usage
 
