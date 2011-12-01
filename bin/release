@@ -1,4 +1,7 @@
-#!/usr/bin/env bash
-# bin/release <build-dir>
+#!/bin/sh
 
-echo "--- {}"
+cat << EOF
+---
+config_vars:
+  PATH: bin:/usr/bin:/bin
+EOF
