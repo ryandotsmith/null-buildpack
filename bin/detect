@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+
+set -e
+
+cd $1
+
+if test -n "`find bin -executable -type f"
+then echo Ø
+else echo no; exit 1
+fi
