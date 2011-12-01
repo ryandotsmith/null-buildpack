@@ -29,3 +29,12 @@ $ git push heroku master
 $ heroku run proj
 hi from proj
 ```
+
+## Motivation
+
+I wanted to run [wcld](https://github.com/ryandotsmith/wcld) without compiling it in the cloud.
+So, I compiled wcld on my linux 64 machine, committed the binary to a git repo and pushed it to heroku.
+
+## Issues
+
+You will need to make sure that a 64bit linux machine can execute the binary.
