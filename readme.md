@@ -1,39 +1,40 @@
 # Heroku Buildpack: Ø
 
-Use Ø if you need heroku to execute a binary.
+Use Ø if you need Heroku to execute a binary.
 
 ## Usage
 
+Create a directory for our Heroku app:
+
 ```bash
-$ mkdir -p proj/bin
+$ mkdir -p myapp/bin
+$ cd myapp
+```
 
-# make a run file that looks like this:
-$ cat proj/bin/run
-#!/usr/bin/env bash
-echo hi from proj
+Here is an example of an executable that will run on 64bit linux machine:
 
-# make a procfile that looks like this:
-$ cat proj/Procfile
-proj: bin/run
+```bash
+$ echo -e "#\!/usr/bin/env bash\n echo hello world" > ./bin/program
+$ echo -e "program: bin/program" > Procfile
+$ chmod +x ./bin/program
+$ ./bin/program
+hello world
+```
 
-$ cd proj
+Push the app to Heroku and run our executable:
 
+```bash
+$ git init; git add .; git commit -am 'init'
 $ heroku create --buildpack http://github.com/ryandotsmith/null-buildpack.git
-
-...
-
 $ git push heroku master
-
-...
-
-$ heroku run proj
-hi from proj
+$ heroku run program
+Running `program` attached to terminal... up, run.8663
+hello world
 ```
 
 ## Motivation
 
-I wanted to run [wcld](https://github.com/ryandotsmith/wcld) without compiling it in the cloud.
-So, I compiled wcld on my linux 64 machine, committed the binary to a git repo and pushed it to heroku.
+I wanted to run various executables (e.g. [log-shuttle](https://github.com/ryandotsmith/log-shuttle)) on Heroku without compiling them on Heroku. Thus, I compile programs on my linux 64 machine, or fetch the binary from the project, commit them to a repo and then run them on Heroku with the Ø buildpack.
 
 ## Issues
 
