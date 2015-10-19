@@ -4,3 +4,10 @@
 echo "-----> Trying to clear cache"
 echo "Removing $2 contents."
 rm -rfv $2/*
+
+echo ">---> RamDisk"
+# Mount ramdisk folder in RAM
+#mkdir /tmp/ramdisk
+#mount -t tmpfs -o size=128M tmpfs /tmp/ramdisk/
+
+echo "RamDisk >----> "
