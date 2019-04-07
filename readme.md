@@ -1,41 +1,46 @@
-# Heroku Buildpack: Ø
+# Null Buildpack
 
-Use Ø if you need Heroku to execute a binary.
+This buildpack was originally designed to run Go programs on Heroku. The idea
+is that you cross-compile your Go program for Linux and then push you binary
+to Heroku using Null Buildpack. Additionally I like to use the Platform
+Deployment API to avoid having to push my (often times large) repo to Heroku.
 
-## Usage
+Heroku buildpacks take a base Linux server and prepare it for your application.
+For example, if you are deploying a Ruby app, the Ruby Buildpack will install
+Ruby, Bundler, Node.js, and other things. The Ruby Buildpack will also run
+scripts when you deploy your app; for example: installing dependencies and
+compiling css/js assets. Sometimes you don't need any of that and you
+simply wish to have a bare Linux install. Since the Null Buildpack
+doesn't do anything, it is very fast when compared to other buildpacks!
 
-Create a directory for our Heroku app:
+Null Buildpack is also a great starting place for developing your own buildpack.
 
+## Examples
+
+Create a directory for our Heroku App:
 ```bash
-$ mkdir -p myapp/bin
-$ cd myapp
+$ mkdir app && cd app
 ```
 
-Here is an example of an executable that will run on 64bit linux machine:
-
+Create a simple binary to run on our Heroku App:
 ```bash
-$ echo -e "#\!/usr/bin/env bash\n echo hello world" > ./bin/program
-$ echo -e "program: bin/program" > Procfile
-$ chmod +x ./bin/program
-$ ./bin/program
-hello world
+$ echo -e "#\!/usr/bin/env bash\n echo hi" > ./test
+$ echo -e "test: ./test" > Procfile
+$ chmod +x ./test
+$ ./test
+hi
 ```
 
-Push the app to Heroku and run our executable:
-
+Create an app with the Null Buildpack
 ```bash
 $ git init; git add .; git commit -am 'init'
 $ heroku create --buildpack http://github.com/ryandotsmith/null-buildpack.git
 $ git push heroku master
-$ heroku run program
-Running `program` attached to terminal... up, run.8663
-hello world
 ```
 
-## Motivation
-
-I wanted to run various executables (e.g. [log-shuttle](https://github.com/ryandotsmith/log-shuttle)) on Heroku without compiling them on Heroku. Thus, I compile programs on my linux 64 machine, or fetch the binary from the project, commit them to a repo and then run them on Heroku with the Ø buildpack.
-
-## Issues
-
-You will need to make sure that a 64bit linux machine can execute the binary.
+Run the program:
+```bash
+$ heroku run test
+Running `test` attached to terminal... up, run.8663
+hi
+```
