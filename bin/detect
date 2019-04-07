@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
 echo "Null Buildpack"
-exit 0
