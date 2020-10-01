@@ -1,4 +1,4 @@
-# Null Buildpack
+# Null Buildpack Introduction
 
 This buildpack was originally designed to run Go programs on Heroku. The idea
 is that you cross-compile your Go program for Linux and then push you binary
